@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-orsl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ORSL grammar for tree-sitter",
   "main": "grammar.js",
   "dependencies": {
