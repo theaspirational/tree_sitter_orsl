@@ -58,9 +58,9 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    $._newline,
-    $._indent,
-    $._dedent,
+    $.newline,
+    $.indent,
+    $.dedent,
     $.string_start,
     $._string_content,
     $.string_end,
