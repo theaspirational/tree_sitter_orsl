@@ -30,7 +30,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -78,7 +78,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -160,7 +160,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -204,7 +204,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -239,7 +239,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           }
         ]
       }
@@ -318,7 +318,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           "named": true,
           "value": "block"
@@ -497,7 +497,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -554,7 +554,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -598,7 +598,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -659,7 +659,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -700,7 +700,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -740,7 +740,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -796,7 +796,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -841,7 +841,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -921,7 +921,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -950,7 +950,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -1064,7 +1064,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -1403,7 +1403,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -1857,7 +1857,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -1919,7 +1919,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         },
         {
           "type": "SYMBOL",
@@ -2062,7 +2062,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -2079,7 +2079,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "newline"
+          "name": "_newline"
         }
       ]
     },
@@ -2103,7 +2103,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "newline"
+            "name": "_newline"
           },
           {
             "type": "SYMBOL",
@@ -3423,7 +3423,7 @@
   "externals": [
     {
       "type": "SYMBOL",
-      "name": "newline"
+      "name": "_newline"
     },
     {
       "type": "SYMBOL",

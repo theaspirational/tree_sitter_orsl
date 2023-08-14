@@ -58,7 +58,7 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    $.newline,
+    $._newline,
     $._indent,
     $._dedent,
     $.string_start,
@@ -90,7 +90,7 @@ module.exports = grammar({
         'namespace',
         field('name', $.identifier),
         ':',
-        $.newline,
+        $._newline,
         $._indent,
         field("body", $.namespace_body),
         $._dedent
@@ -104,7 +104,7 @@ module.exports = grammar({
         'context',
         field("context_type", $.context_type),
         ':',
-        $.newline,
+        $._newline,
         $._indent,
         field('body', $.context_body),
         $._dedent
@@ -129,7 +129,7 @@ module.exports = grammar({
     user_variables: $ => seq(
       'user-variables',
       ":",
-      $.newline,
+      $._newline,
       $._indent,
       field("body", $.user_variables_body),
       $._dedent
@@ -141,13 +141,13 @@ module.exports = grammar({
     user_marks: $ => seq(
       'user-marks',
       ":",
-      $.newline,
+      $._newline,
       $._indent,
       field("body", $.user_marks_body),
       $._dedent
     ),
 
-    user_marks_body: $ => repeat1(seq(field("mark", $.typed_identifier), $.newline)),
+    user_marks_body: $ => repeat1(seq(field("mark", $.typed_identifier), $._newline)),
 
     function_definition: $ => seq(
       'function',
@@ -161,7 +161,7 @@ module.exports = grammar({
     _suite: $ => choice(
       alias($._simple_statements, $.block),
       seq($._indent, $.block),
-      alias($.newline, $.block)
+      alias($._newline, $.block)
     ),
 
     block: $ => seq(
@@ -205,7 +205,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('parameters', $.parameters),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.procedure_body),
       $._dedent
@@ -219,7 +219,7 @@ module.exports = grammar({
     annotation: $ => seq(
       '@',
       field('annotation', $.identifier),
-      $.newline),
+      $._newline),
 
     procedure_body: $ => repeat1(choice(
       $.runif_block,
@@ -231,7 +231,7 @@ module.exports = grammar({
     runif_block: $ => prec.left(PREC.runif, seq(
       'runif',
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field("body", $.runif_body),
       $._dedent
@@ -248,7 +248,7 @@ module.exports = grammar({
     init_block: $ => prec.left(PREC.init, seq(
       'init',
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.init_body),
       $._dedent
@@ -268,7 +268,7 @@ module.exports = grammar({
     map_block: $ => seq(
       'map',
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.map_body),
       $._dedent
@@ -279,7 +279,7 @@ module.exports = grammar({
     sequence_block: $ => seq(
       'sequence',
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.sequence_body),
       $._dedent
@@ -295,7 +295,7 @@ module.exports = grammar({
     any_block: $ => prec.left(PREC.any_block, seq(
       'any',
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.any_body),
       $._dedent
@@ -305,7 +305,7 @@ module.exports = grammar({
       'any',
       field('parameters', $.parameters),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.any_body),
       $._dedent
@@ -319,14 +319,14 @@ module.exports = grammar({
         seq('=', field('right', $._right_hand_side)),
         seq(':', field('right', $._right_hand_side)),
       ),
-      $.newline
+      $._newline
     ),
 
     user_variable_assignment: $ => seq(
       field('left', $.typed_identifier),
       '=',
       field('right', $._right_hand_side),
-      $.newline
+      $._newline
       ),
 
     _left_hand_side: $ => choice(
@@ -356,7 +356,7 @@ module.exports = grammar({
     _simple_statements: $ => seq(
       sep1($._simple_statement, SEMICOLON),
       optional(SEMICOLON),
-      $.newline
+      $._newline
     ),
 
     _simple_statement: $ => choice(
@@ -446,7 +446,7 @@ module.exports = grammar({
     boolean_block: $ => prec.left(PREC.boolean_block, seq(
       field("operator", choice("or", "and", "not")),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field("body", $.boolean_block_body),
       $._dedent
@@ -486,7 +486,7 @@ module.exports = grammar({
             alias(seq('is', 'not'), 'is not')
           )),
         $.primary_expression,
-        // $.newline
+        // $._newline
       ))
     )),
 
@@ -542,7 +542,7 @@ module.exports = grammar({
       'supermap',
       field('arguments', $.argument_list),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.supermap_body),
       $._dedent
@@ -557,7 +557,7 @@ module.exports = grammar({
     supermap_condition_expression: $ => seq(
       field('condition', $.supermap_condition),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field('body', $.supermap_condition_body),
       $._dedent
@@ -593,19 +593,19 @@ module.exports = grammar({
       $.primary_expression,
       '=>',
       $.expression,
-      $.newline
+      $._newline
     ),
 
     supermap_default_case: $ => seq(
       '=>',
       $.expression,
-      $.newline
+      $._newline
     ),
 
     supermap_boolean_block: $ => prec.left(PREC.boolean_block, seq(
       field("predicate", $.primary_expression),
       ':',
-      $.newline,
+      $._newline,
       $._indent,
       field("body", $.supermap_boolean_block_body),
       $._dedent
