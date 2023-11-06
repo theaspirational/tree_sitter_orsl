@@ -2,12 +2,37 @@
   "name": "orsl",
   "word": "identifier",
   "rules": {
-    "script_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "namespace"
-      }
+    "orsl_document": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "contract"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "contract_path"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "namespace"
+          }
+        }
+      ]
+    },
+    "contract_path": {
+      "type": "SYMBOL",
+      "name": "string"
     },
     "namespace": {
       "type": "SEQ",
@@ -77,6 +102,18 @@
           }
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "context_alias"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": ":"
         },
@@ -103,23 +140,15 @@
       ]
     },
     "context_name": {
-      "type": "CHOICE",
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "context_alias": {
+      "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "global"
-        },
-        {
-          "type": "STRING",
-          "value": "client_order"
-        },
-        {
-          "type": "STRING",
-          "value": "venue_order"
-        },
-        {
-          "type": "STRING",
-          "value": "venue_fill"
+          "value": "as"
         },
         {
           "type": "SYMBOL",
