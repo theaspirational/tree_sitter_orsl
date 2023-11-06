@@ -1,5 +1,4 @@
 const PREC = {
-
   conditional: -1,
   ternary_expression: -2,
   supermap_case: -3,
@@ -21,7 +20,6 @@ const PREC = {
 
   supermap: 22,
 
-
   runif: 23,
   init: 24,
   boolean_block: 24,
@@ -29,27 +27,27 @@ const PREC = {
   any_call: 26,
 
   call: 27,
-}
+};
 
-const SEMICOLON = ';'
+const SEMICOLON = ";";
 
 module.exports = grammar({
-  name: 'orsl',
+  name: "orsl",
 
-  extras: $ => [
+  extras: ($) => [
     $.comment,
     /[\s\f\uFEFF\u2060\u200B]|\r?\n/,
     $.line_continuation,
   ],
 
-  conflicts: $ => [
+  conflicts: ($) => [
     // [$.primary_expression, $._left_hand_side],
     [$.primary_expression, $.concatenated_string],
     [$.call, $.overridable_call],
     [$.expression, $.supermap_case],
   ],
 
-  supertypes: $ => [
+  supertypes: ($) => [
     $._simple_statement,
     $._compound_statement,
     $.expression,
@@ -57,7 +55,7 @@ module.exports = grammar({
     $.parameter,
   ],
 
-  externals: $ => [
+  externals: ($) => [
     $._newline,
     $._indent,
     $._dedent,
@@ -74,195 +72,190 @@ module.exports = grammar({
 
     // Allow the external scanner to check for the validity of closing brackets
     // so that it can avoid returning dedent tokens between brackets.
-    ']',
-    ')',
+    "]",
+    ")",
     // '}',
   ],
 
-  word: $ => $.identifier,
+  word: ($) => $.identifier,
 
   rules: {
 
-    script_file: $ => repeat($.namespace),
+    orsl_document: ($) =>
+      seq(
+        "contract",
+        field("name", $.contract_path),
+        $._newline,
+        repeat($.namespace)
+      ),
+
+    contract_path: ($) => $.string,
 
     namespace: ($) =>
       seq(
-        'namespace',
-        field('name', $.namespace_name),
-        ':',
+        "namespace",
+        field("name", $.namespace_name),
+        ":",
         $._newline,
         $._indent,
         field("body", $.namespace_body),
         $._dedent
       ),
-    
-    namespace_name  : $ => $.identifier,
 
-    namespace_body: $ => repeat1(
-      $.context),
+    namespace_name: ($) => $.identifier,
+
+    namespace_body: ($) => repeat1($.context),
 
     context: ($) =>
       seq(
-        'context',
+        "context",
         field("name", $.context_name),
-        ':',
+        optional($.context_alias),
+        ":",
         $._newline,
         $._indent,
-        field('body', $.context_body),
+        field("body", $.context_body),
         $._dedent
       ),
 
-    context_name: ($) =>
-      choice(
-        "global",
-        "client_order",
-        "venue_order",
-        "venue_fill",
-        $.identifier
+    context_name: ($) => $.identifier,
+
+    context_alias: ($) => seq("as", $.identifier),
+
+    context_body: ($) =>
+      repeat1(
+        choice(
+          $.user_variables,
+          $.user_marks,
+          $.function_definition,
+          $._procedure_definitions
+        )
       ),
 
-    context_body: $ => repeat1(choice(
-      $.user_variables,
-      $.user_marks,
-      $.function_definition,
-      $._procedure_definitions,
-    )),
+    user_variables: ($) =>
+      seq(
+        "user-variables",
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.user_variables_body),
+        $._dedent
+      ),
 
-    user_variables: $ => seq(
-      'user-variables',
-      ":",
-      $._newline,
-      $._indent,
-      field("body", $.user_variables_body),
-      $._dedent
-    ),
+    user_variables_body: ($) =>
+      repeat1(field("assignment", $.user_variable_assignment)),
 
-    user_variables_body: $ => repeat1(
-      field("assignment", $.user_variable_assignment)),
+    user_marks: ($) =>
+      seq(
+        "user-marks",
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.user_marks_body),
+        $._dedent
+      ),
 
-    user_marks: $ => seq(
-      'user-marks',
-      ":",
-      $._newline,
-      $._indent,
-      field("body", $.user_marks_body),
-      $._dedent
-    ),
+    user_marks_body: ($) =>
+      repeat1(seq(field("mark", $.typed_identifier), $._newline)),
 
-    user_marks_body: $ => repeat1(seq(field("mark", $.typed_identifier), $._newline)),
+    function_definition: ($) =>
+      seq(
+        "function",
+        field("return_type", $.type),
+        field("name", $.function_name),
+        field("parameters", $.parameters),
+        ":",
+        field("body", $._suite)
+      ),
 
-    function_definition: $ => seq(
-      'function',
-      field('return_type', $.type),
-      field('name', $.function_name),
-      field('parameters', $.parameters),
-      ':',
-      field('body', $._suite)
-    ),
+    function_name: ($) => $.identifier,
 
-    function_name: $ => $.identifier,
-
-    _suite: $ => choice(
-      alias($._simple_statements, $.block),
-      seq($._indent, $.block),
-      alias($._newline, $.block)
-    ),
-
-    block: $ => seq(
-      repeat($._statement),
-      $._dedent
-    ),
-
-    parameters: $ => seq(
-      '(',
-      optional($._parameters),
-      ')'
-    ),
-
-    _parameters: $ => seq(
-      commaSep1($.parameter),
-      optional(',')
-    ),
-
-    parameter: $ => choice(
-      $.identifier,
-      $.default_parameter
-    ),
-
-    default_parameter: $ => seq(
-      field('name', $.identifier),
-      '=',
-      field('value', $.expression)
-    ),
-
-    params_maping: $ => seq(
-      '...',
-    ),
-
-    _procedure_definitions: $ => choice(
-      $.procedure_definition,
-      $.annotated_procedure
-    ),
-
-    procedure_definition: $ => seq(
-      'procedure',
-      field('name', $.procedure_name),
-      field('parameters', $.parameters),
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.procedure_body),
-      $._dedent
-    ),
-
-    procedure_name: $ => $.identifier,
-
-    annotated_procedure: $ => seq(
-      repeat1($.annotation),
-      field('procedure', $.procedure_definition)
-    ),
-
-    annotation: $ => seq(
-      '@',
-      field('name', $.annotation_name),
-      $._newline),
-    
-    annotation_name: $ => $.identifier,
-
-    procedure_body: $ => repeat1(choice(
-      $.runif_block,
-      $.init_block,
-      $.map_block,
-      $.sequence_block,
-    )),
-
-    runif_block: $ => prec.left(PREC.runif, seq(
-      'runif',
-      ':',
-      $._newline,
-      $._indent,
-      field("body", $.runif_body),
-      $._dedent
-    )),
-
-    runif_body: $ => repeat1(
+    _suite: ($) =>
       choice(
-        $.primary_expression,
-        $.if_statement,
-        $.comparison_operator,
-        $.boolean_block,
-      )),
+        alias($._simple_statements, $.block),
+        seq($._indent, $.block),
+        alias($._newline, $.block)
+      ),
 
-    init_block: $ => prec.left(PREC.init, seq(
-      'init',
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.init_body),
-      $._dedent
-    )),
+    block: ($) => seq(repeat($._statement), $._dedent),
 
-    init_body: $ => repeat1($._statement),
+    parameters: ($) => seq("(", optional($._parameters), ")"),
+
+    _parameters: ($) => seq(commaSep1($.parameter), optional(",")),
+
+    parameter: ($) => choice($.identifier, $.default_parameter),
+
+    default_parameter: ($) =>
+      seq(field("name", $.identifier), "=", field("value", $.expression)),
+
+    params_maping: ($) => seq("..."),
+
+    _procedure_definitions: ($) =>
+      choice($.procedure_definition, $.annotated_procedure),
+
+    procedure_definition: ($) =>
+      seq(
+        "procedure",
+        field("name", $.procedure_name),
+        field("parameters", $.parameters),
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.procedure_body),
+        $._dedent
+      ),
+
+    procedure_name: ($) => $.identifier,
+
+    annotated_procedure: ($) =>
+      seq(repeat1($.annotation), field("procedure", $.procedure_definition)),
+
+    annotation: ($) => seq("@", field("name", $.annotation_name), $._newline),
+
+    annotation_name: ($) => $.identifier,
+
+    procedure_body: ($) =>
+      repeat1(
+        choice($.runif_block, $.init_block, $.map_block, $.sequence_block)
+      ),
+
+    runif_block: ($) =>
+      prec.left(
+        PREC.runif,
+        seq(
+          "runif",
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.runif_body),
+          $._dedent
+        )
+      ),
+
+    runif_body: ($) =>
+      repeat1(
+        choice(
+          $.primary_expression,
+          $.if_statement,
+          $.comparison_operator,
+          $.boolean_block
+        )
+      ),
+
+    init_block: ($) =>
+      prec.left(
+        PREC.init,
+        seq(
+          "init",
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.init_body),
+          $._dedent
+        )
+      ),
+
+    init_body: ($) => repeat1($._statement),
 
     // repeat1(
     //   choice(
@@ -273,511 +266,530 @@ module.exports = grammar({
 
     //   )),
 
-    map_block: $ => seq(
-      'map',
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.map_body),
-      $._dedent
-    ),
-
-    map_body: $ => repeat1($._statement),
-
-    sequence_block: $ => seq(
-      'sequence',
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.sequence_body),
-      $._dedent
-    ),
-
-    sequence_body: $ => repeat1(
-      choice(
-        $._statement,
-        $.any_call,
-        $.any_block,
-      )),
-
-    any_block: $ => prec.left(PREC.any_block, seq(
-      'any',
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.any_body),
-      $._dedent
-    )),
-
-    any_call: $ => prec.left(PREC.any_call, seq(
-      'any',
-      field('parameters', $.parameters),
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.any_body),
-      $._dedent
-    )),
-
-    any_body: $ => repeat1($._statement),
-
-    assignment: $ => seq(
-      field('left', $._left_hand_side),
-      choice(
-        seq('=', field('right', $._right_hand_side)),
-        seq(':', field('right', $._right_hand_side)),
-      ),
-      $._newline
-    ),
-
-    user_variable_assignment: $ => seq(
-      field('left', $.typed_identifier),
-      '=',
-      field('right', $._right_hand_side),
-      $._newline
+    map_block: ($) =>
+      seq(
+        "map",
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.map_body),
+        $._dedent
       ),
 
-    _left_hand_side: $ => choice(
-      $.identifier,
-      $.subscript,
-      $.attribute,
-      $.typed_identifier,
-    ),
+    map_body: ($) => repeat1($._statement),
 
-    typed_identifier: $ => seq(
-      field('type', $.type),
-      field('name', $.typed_identifier_name)
-    ),
+    sequence_block: ($) =>
+      seq(
+        "sequence",
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.sequence_body),
+        $._dedent
+      ),
 
-    typed_identifier_name: $ => $.identifier,
+    sequence_body: ($) =>
+      repeat1(choice($._statement, $.any_call, $.any_block)),
 
-    _right_hand_side: $ => choice(
-      $.expression,
-      $.expression_list
-    ),
+    any_block: ($) =>
+      prec.left(
+        PREC.any_block,
+        seq(
+          "any",
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.any_body),
+          $._dedent
+        )
+      ),
 
-    _statement: $ => choice(
-      $._simple_statements,
-      $._compound_statement
-    ),
+    any_call: ($) =>
+      prec.left(
+        PREC.any_call,
+        seq(
+          "any",
+          field("parameters", $.parameters),
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.any_body),
+          $._dedent
+        )
+      ),
+
+    any_body: ($) => repeat1($._statement),
+
+    assignment: ($) =>
+      seq(
+        field("left", $._left_hand_side),
+        choice(
+          seq("=", field("right", $._right_hand_side)),
+          seq(":", field("right", $._right_hand_side))
+        ),
+        $._newline
+      ),
+
+    user_variable_assignment: ($) =>
+      seq(
+        field("left", $.typed_identifier),
+        "=",
+        field("right", $._right_hand_side),
+        $._newline
+      ),
+
+    _left_hand_side: ($) =>
+      choice($.identifier, $.subscript, $.attribute, $.typed_identifier),
+
+    typed_identifier: ($) =>
+      seq(field("type", $.type), field("name", $.typed_identifier_name)),
+
+    typed_identifier_name: ($) => $.identifier,
+
+    _right_hand_side: ($) => choice($.expression, $.expression_list),
+
+    _statement: ($) => choice($._simple_statements, $._compound_statement),
 
     // Simple statements
 
-    _simple_statements: $ => seq(
-      sep1($._simple_statement, SEMICOLON),
-      optional(SEMICOLON),
-      $._newline
-    ),
+    _simple_statements: ($) =>
+      seq(
+        sep1($._simple_statement, SEMICOLON),
+        optional(SEMICOLON),
+        $._newline
+      ),
 
-    _simple_statement: $ => choice(
-      $.expression_statement,
-      $.return_statement,
-    ),
+    _simple_statement: ($) =>
+      choice($.expression_statement, $.return_statement),
 
-    expression_statement: $ => choice(
-      $.expression,
-      $.assignment,
-    ),
+    expression_statement: ($) => choice($.expression, $.assignment),
 
-    return_statement: $ => seq(
-      'return',
-      $.expression
-    ),
+    return_statement: ($) => seq("return", $.expression),
 
     // Compound statements
-    _compound_statement: $ => choice(
-      $.if_statement,
-      $.boolean_block,
-      $.function_definition,
-    ),
+    _compound_statement: ($) =>
+      choice($.if_statement, $.boolean_block, $.function_definition),
 
-    if_statement: $ => seq(
-      'if',
-      field('condition', $.expression),
-      ':',
-      field('consequence', $._suite),
-      repeat(field('alternative', $.elif_clause)),
-      optional(field('alternative', $.else_clause))
-    ),
+    if_statement: ($) =>
+      seq(
+        "if",
+        field("condition", $.expression),
+        ":",
+        field("consequence", $._suite),
+        repeat(field("alternative", $.elif_clause)),
+        optional(field("alternative", $.else_clause))
+      ),
 
-    elif_clause: $ => seq(
-      'elif',
-      field('condition', $.expression),
-      ':',
-      field('consequence', $._suite)
-    ),
+    elif_clause: ($) =>
+      seq(
+        "elif",
+        field("condition", $.expression),
+        ":",
+        field("consequence", $._suite)
+      ),
 
-    else_clause: $ => seq(
-      'else',
-      ':',
-      field('body', $._suite)
-    ),
+    else_clause: ($) => seq("else", ":", field("body", $._suite)),
 
     // Expressions
-    expression: $ => choice(
-      $.comparison_operator,
-      $.boolean_operator,
-      $.primary_expression,
-      $.ternary_expression,
-      $.not_operator,
-    ),
-
-    primary_expression: $ => choice(
-      $.binary_operator,
-      $.identifier,
-      $.string,
-      $.concatenated_string,
-      $.integer,
-      $.float,
-      $.true,
-      $.false,
-      $.none,
-      $.unary_operator,
-      $.attribute,
-      $.subscript,
-      $.call,
-      $.overridable_call,
-      $.supermap,
-      $.list,
-      $.parenthesized_expression,
-    ),
-
-    not_operator: $ => prec(PREC.not, seq(
-      'not',
-      field('argument', $.expression)
-    )),
-
-    parenthesized_expression: $ => prec(PREC.parenthesized_expression, seq(
-      '(',
-      $.expression,
-      ')'
-    )),
-
-    boolean_block: $ => prec.left(PREC.boolean_block, seq(
-      field("operator", choice("or", "and", "not")),
-      ':',
-      $._newline,
-      $._indent,
-      field("body", $.boolean_block_body),
-      $._dedent
-    )),
-
-    boolean_block_body: $ => repeat1($.expression),
-
-    boolean_operator: $ => choice(
-
-      prec.left(PREC.and, seq(
-        field('left', $.expression),
-        field('operator', 'and'),
-        field('right', $.expression)
-      )),
-      prec.left(PREC.or, seq(
-        field('left', $.expression),
-        field('operator', 'or'),
-        field('right', $.expression)
-      ))
-    ),
-
-    comparison_operator: $ => prec.left(PREC.compare, seq(
-      $.primary_expression,
-      repeat1(seq(
-        field('operators',
-          choice(
-            '<',
-            '<=',
-            '==',
-            '!=',
-            '>=',
-            '>',
-            '<>',
-            'in',
-            alias(seq('not', 'in'), 'not in'),
-            'is',
-            alias(seq('is', 'not'), 'is not')
-          )),
-        $.primary_expression,
-        // $._newline
-      ))
-    )),
-
-    ternary_expression: $ => prec.right(PREC.ternary_expression, seq(
-      field("condition", $.expression),
-      '?',
-      field("consequence", $.expression),
-      ':',
-      field("alternative", $.expression)
-    )),
-
-    expression_list: $ => prec.right(seq(
-      $.expression,
-      choice(
-        ',',
-        seq(
-          repeat1(seq(
-            ',',
-            $.expression
-          )),
-          optional(',')
-        ),
-      )
-    )),
-
-    list: $ => seq(
-      '[',
-      optional($._collection_elements),
-      ']'
-    ),
-
-    _collection_elements: $ => seq(
-      commaSep1(
-        $.expression
-      ),
-      optional(',')
-    ),
-
-    call: $ => prec(PREC.call, seq(
-      field('function', $.primary_expression),
-      field('arguments', $.argument_list
-      )
-    )),
-
-    overridable_call: $ => prec(PREC.call, seq(
-      field('override', $.primary_expression),
-      field('arguments', $.argument_list),
-      ":",
-      field('body', $._suite),
-    )),
-
-    supermap: $ => prec.left(PREC.supermap, seq(
-      'supermap',
-      field('arguments', $.argument_list),
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.supermap_body),
-      $._dedent
-    )),
-
-    supermap_body: $ => seq(
-        repeat1(
-          $.supermap_condition_expression,
-        ),
-        optional($.supermap_default_case)),
-
-    supermap_condition_expression: $ => seq(
-      field('condition', $.supermap_condition),
-      ':',
-      $._newline,
-      $._indent,
-      field('body', $.supermap_condition_body),
-      $._dedent
-    ),
-
-    supermap_condition: $ => seq(
+    expression: ($) =>
       choice(
         $.comparison_operator,
         $.boolean_operator,
         $.primary_expression,
         $.ternary_expression,
-        $.not_operator,
+        $.not_operator
       ),
-      optional($.supermap_case),
-    ),
 
-    supermap_case: $ => prec.left(PREC.supermap_case, seq(
-      SEMICOLON,
-      optional("("),
-      repeat1($.primary_expression),
-      optional(")"),
-    )),
-
-    supermap_condition_body: $ => repeat1(
+    primary_expression: ($) =>
       choice(
-        $.supermap_boolean_block,
-        $.supermap_pattern,
-        $.supermap_default_case
-      )
-    ),
+        $.binary_operator,
+        $.identifier,
+        $.string,
+        $.concatenated_string,
+        $.integer,
+        $.float,
+        $.true,
+        $.false,
+        $.none,
+        $.unary_operator,
+        $.attribute,
+        $.subscript,
+        $.call,
+        $.overridable_call,
+        $.supermap,
+        $.list,
+        $.parenthesized_expression
+      ),
 
-    supermap_pattern: $ => seq(
-      $.primary_expression,
-      '=>',
-      $.expression,
-      $._newline
-    ),
+    not_operator: ($) =>
+      prec(PREC.not, seq("not", field("argument", $.expression))),
 
-    supermap_default_case: $ => seq(
-      '=>',
-      $.expression,
-      $._newline
-    ),
+    parenthesized_expression: ($) =>
+      prec(PREC.parenthesized_expression, seq("(", $.expression, ")")),
 
-    supermap_boolean_block: $ => prec.left(PREC.boolean_block, seq(
-      field("predicate", $.primary_expression),
-      ':',
-      $._newline,
-      $._indent,
-      field("body", $.supermap_boolean_block_body),
-      $._dedent
-    )),
-
-    supermap_boolean_block_body: $ => repeat1($.supermap_pattern),
-
-
-    argument_list: $ => seq(
-      '(',
-      optional(commaSep1(
-        choice(
-          $.expression,
-          $.keyword_argument,
-          $.params_maping
+    boolean_block: ($) =>
+      prec.left(
+        PREC.boolean_block,
+        seq(
+          field("operator", choice("or", "and", "not")),
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.boolean_block_body),
+          $._dedent
         )
-      )),
-      optional(','),
-      ')'
-    ),
+      ),
 
-    keyword_argument: $ => seq(
-      field('name', $.identifier),
-      '=',
-      field('value', $.expression)
-    ),
+    boolean_block_body: ($) => repeat1($.expression),
+
+    boolean_operator: ($) =>
+      choice(
+        prec.left(
+          PREC.and,
+          seq(
+            field("left", $.expression),
+            field("operator", "and"),
+            field("right", $.expression)
+          )
+        ),
+        prec.left(
+          PREC.or,
+          seq(
+            field("left", $.expression),
+            field("operator", "or"),
+            field("right", $.expression)
+          )
+        )
+      ),
+
+    comparison_operator: ($) =>
+      prec.left(
+        PREC.compare,
+        seq(
+          $.primary_expression,
+          repeat1(
+            seq(
+              field(
+                "operators",
+                choice(
+                  "<",
+                  "<=",
+                  "==",
+                  "!=",
+                  ">=",
+                  ">",
+                  "<>",
+                  "in",
+                  alias(seq("not", "in"), "not in"),
+                  "is",
+                  alias(seq("is", "not"), "is not")
+                )
+              ),
+              $.primary_expression
+              // $._newline
+            )
+          )
+        )
+      ),
+
+    ternary_expression: ($) =>
+      prec.right(
+        PREC.ternary_expression,
+        seq(
+          field("condition", $.expression),
+          "?",
+          field("consequence", $.expression),
+          ":",
+          field("alternative", $.expression)
+        )
+      ),
+
+    expression_list: ($) =>
+      prec.right(
+        seq(
+          $.expression,
+          choice(",", seq(repeat1(seq(",", $.expression)), optional(",")))
+        )
+      ),
+
+    list: ($) => seq("[", optional($._collection_elements), "]"),
+
+    _collection_elements: ($) => seq(commaSep1($.expression), optional(",")),
+
+    call: ($) =>
+      prec(
+        PREC.call,
+        seq(
+          field("function", $.primary_expression),
+          field("arguments", $.argument_list)
+        )
+      ),
+
+    overridable_call: ($) =>
+      prec(
+        PREC.call,
+        seq(
+          field("override", $.primary_expression),
+          field("arguments", $.argument_list),
+          ":",
+          field("body", $._suite)
+        )
+      ),
+
+    supermap: ($) =>
+      prec.left(
+        PREC.supermap,
+        seq(
+          "supermap",
+          field("arguments", $.argument_list),
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.supermap_body),
+          $._dedent
+        )
+      ),
+
+    supermap_body: ($) =>
+      seq(
+        repeat1($.supermap_condition_expression),
+        optional($.supermap_default_case)
+      ),
+
+    supermap_condition_expression: ($) =>
+      seq(
+        field("condition", $.supermap_condition),
+        ":",
+        $._newline,
+        $._indent,
+        field("body", $.supermap_condition_body),
+        $._dedent
+      ),
+
+    supermap_condition: ($) =>
+      seq(
+        choice(
+          $.comparison_operator,
+          $.boolean_operator,
+          $.primary_expression,
+          $.ternary_expression,
+          $.not_operator
+        ),
+        optional($.supermap_case)
+      ),
+
+    supermap_case: ($) =>
+      prec.left(
+        PREC.supermap_case,
+        seq(
+          SEMICOLON,
+          optional("("),
+          repeat1($.primary_expression),
+          optional(")")
+        )
+      ),
+
+    supermap_condition_body: ($) =>
+      repeat1(
+        choice(
+          $.supermap_boolean_block,
+          $.supermap_pattern,
+          $.supermap_default_case
+        )
+      ),
+
+    supermap_pattern: ($) =>
+      seq($.primary_expression, "=>", $.expression, $._newline),
+
+    supermap_default_case: ($) => seq("=>", $.expression, $._newline),
+
+    supermap_boolean_block: ($) =>
+      prec.left(
+        PREC.boolean_block,
+        seq(
+          field("predicate", $.primary_expression),
+          ":",
+          $._newline,
+          $._indent,
+          field("body", $.supermap_boolean_block_body),
+          $._dedent
+        )
+      ),
+
+    supermap_boolean_block_body: ($) => repeat1($.supermap_pattern),
+
+    argument_list: ($) =>
+      seq(
+        "(",
+        optional(
+          commaSep1(choice($.expression, $.keyword_argument, $.params_maping))
+        ),
+        optional(","),
+        ")"
+      ),
+
+    keyword_argument: ($) =>
+      seq(field("name", $.identifier), "=", field("value", $.expression)),
 
     // TODO: ask about context aware attributes
-    attribute: $ => prec(PREC.call, seq(
-      field('ctx', $.primary_expression),
-      '.',
-      field('attribute', $.identifier)
-    )),
+    attribute: ($) =>
+      prec(
+        PREC.call,
+        seq(
+          field("ctx", $.primary_expression),
+          ".",
+          field("attribute", $.identifier)
+        )
+      ),
 
-    subscript: $ => prec(PREC.call, seq(
-      field('value', $.primary_expression),
-      '[',
-      commaSep1(field('subscript', $.expression)),
-      optional(','),
-      ']'
-    )),
+    subscript: ($) =>
+      prec(
+        PREC.call,
+        seq(
+          field("value", $.primary_expression),
+          "[",
+          commaSep1(field("subscript", $.expression)),
+          optional(","),
+          "]"
+        )
+      ),
 
-    unary_operator: $ => prec(PREC.unary, seq(
-      field('operator', choice('+', '-', '~', '!')),
-      field('argument', $.primary_expression)
-    )),
+    unary_operator: ($) =>
+      prec(
+        PREC.unary,
+        seq(
+          field("operator", choice("+", "-", "~", "!")),
+          field("argument", $.primary_expression)
+        )
+      ),
 
-    binary_operator: $ => {
+    binary_operator: ($) => {
       const table = [
-        [prec.left, '+', PREC.plus],
-        [prec.left, '-', PREC.plus],
-        [prec.left, '*', PREC.times],
-        [prec.left, '@', PREC.times],
-        [prec.left, '/', PREC.times],
-        [prec.left, '%', PREC.times],
-        [prec.left, '//', PREC.times],
-        [prec.right, '**', PREC.power],
-        [prec.left, '|', PREC.bitwise_or],
-        [prec.left, '&', PREC.bitwise_and],
-        [prec.left, '^', PREC.xor],
-        [prec.left, '<<', PREC.shift],
-        [prec.left, '>>', PREC.shift],
+        [prec.left, "+", PREC.plus],
+        [prec.left, "-", PREC.plus],
+        [prec.left, "*", PREC.times],
+        [prec.left, "@", PREC.times],
+        [prec.left, "/", PREC.times],
+        [prec.left, "%", PREC.times],
+        [prec.left, "//", PREC.times],
+        [prec.right, "**", PREC.power],
+        [prec.left, "|", PREC.bitwise_or],
+        [prec.left, "&", PREC.bitwise_and],
+        [prec.left, "^", PREC.xor],
+        [prec.left, "<<", PREC.shift],
+        [prec.left, ">>", PREC.shift],
       ];
 
-      return choice(...table.map(([fn, operator, precedence]) => fn(precedence, seq(
-        field('left', $.primary_expression),
-        field('operator', operator),
-        field('right', $.primary_expression)
-      ))));
-    },
-
-    concatenated_string: $ => prec.right(seq(
-      $.string,
-      repeat1($.string)
-    )),
-
-    string: $ => seq(
-      $.string_start,
-      repeat($.string_content),
-      $.string_end,
-    ),
-
-    string_content: $ => prec.right(repeat1(
-      choice(
-        $.escape_sequence,
-        $._not_escape_sequence,
-        $._string_content
-      ))),
-
-    escape_sequence: $ => token.immediate(prec(1, seq(
-      '\\',
-      choice(
-        /u[a-fA-F\d]{4}/,
-        /U[a-fA-F\d]{8}/,
-        /x[a-fA-F\d]{2}/,
-        /\d{3}/,
-        /\r?\n/,
-        /['"abfrntv\\]/,
-        /N\{[^}]+\}/,
-      )
-    ))),
-
-    _not_escape_sequence: $ => token.immediate('\\'),
-
-    integer: $ => token(choice(
-      seq(
-        choice('0x', '0X'),
-        repeat1(/_?[A-Fa-f0-9]+/),
-        optional(/[Ll]/)
-      ),
-      seq(
-        choice('0o', '0O'),
-        repeat1(/_?[0-7]+/),
-        optional(/[Ll]/)
-      ),
-      seq(
-        choice('0b', '0B'),
-        repeat1(/_?[0-1]+/),
-        optional(/[Ll]/)
-      ),
-      seq(
-        repeat1(/[0-9]+_?/),
-        choice(
-          optional(/[Ll]/), // long numbers
-          optional(/[jJ]/) // complex numbers
+      return choice(
+        ...table.map(([fn, operator, precedence]) =>
+          fn(
+            precedence,
+            seq(
+              field("left", $.primary_expression),
+              field("operator", operator),
+              field("right", $.primary_expression)
+            )
+          )
         )
-      )
-    )),
-
-    float: $ => {
-      const digits = repeat1(/[0-9]+_?/);
-      const exponent = seq(/[eE][\+-]?/, digits)
-
-      return token(seq(
-        choice(
-          seq(digits, '.', optional(digits), optional(exponent)),
-          seq(optional(digits), '.', digits, optional(exponent)),
-          seq(digits, exponent)
-        ),
-        optional(choice(/[Ll]/, /[jJ]/))
-      ))
+      );
     },
 
-    comment: $ => token(seq('#', /.*/)),
+    concatenated_string: ($) => prec.right(seq($.string, repeat1($.string))),
 
-    line_continuation: $ => token(seq('\\', choice(seq(optional('\r'), '\n'), '\0'))),
+    string: ($) => seq($.string_start, repeat($.string_content), $.string_end),
 
-    identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    string_content: ($) =>
+      prec.right(
+        repeat1(
+          choice($.escape_sequence, $._not_escape_sequence, $._string_content)
+        )
+      ),
 
-    true: $ => 'True',
-    false: $ => 'False',
-    none: $ => 'None',
+    escape_sequence: ($) =>
+      token.immediate(
+        prec(
+          1,
+          seq(
+            "\\",
+            choice(
+              /u[a-fA-F\d]{4}/,
+              /U[a-fA-F\d]{8}/,
+              /x[a-fA-F\d]{2}/,
+              /\d{3}/,
+              /\r?\n/,
+              /['"abfrntv\\]/,
+              /N\{[^}]+\}/
+            )
+          )
+        )
+      ),
 
-    type: $ => choice('Bool', 'Map', 'String', 'Int', 'Float', 'List', 'SeqList', 'Set', 'Tuple', 'Any', 'Void'),
+    _not_escape_sequence: ($) => token.immediate("\\"),
 
-  }
+    integer: ($) =>
+      token(
+        choice(
+          seq(choice("0x", "0X"), repeat1(/_?[A-Fa-f0-9]+/), optional(/[Ll]/)),
+          seq(choice("0o", "0O"), repeat1(/_?[0-7]+/), optional(/[Ll]/)),
+          seq(choice("0b", "0B"), repeat1(/_?[0-1]+/), optional(/[Ll]/)),
+          seq(
+            repeat1(/[0-9]+_?/),
+            choice(
+              optional(/[Ll]/), // long numbers
+              optional(/[jJ]/) // complex numbers
+            )
+          )
+        )
+      ),
+
+    float: ($) => {
+      const digits = repeat1(/[0-9]+_?/);
+      const exponent = seq(/[eE][\+-]?/, digits);
+
+      return token(
+        seq(
+          choice(
+            seq(digits, ".", optional(digits), optional(exponent)),
+            seq(optional(digits), ".", digits, optional(exponent)),
+            seq(digits, exponent)
+          ),
+          optional(choice(/[Ll]/, /[jJ]/))
+        )
+      );
+    },
+
+    comment: ($) => token(seq("#", /.*/)),
+
+    line_continuation: ($) =>
+      token(seq("\\", choice(seq(optional("\r"), "\n"), "\0"))),
+
+    identifier: ($) => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+
+    true: ($) => "True",
+    false: ($) => "False",
+    none: ($) => "None",
+
+    type: ($) =>
+      choice(
+        "Bool",
+        "Map",
+        "String",
+        "Int",
+        "Float",
+        "List",
+        "SeqList",
+        "Set",
+        "Tuple",
+        "Any",
+        "Void"
+      ),
+  },
 });
 
 function commaSep1(rule) {
-  return sep1(rule, ',')
+  return sep1(rule, ",");
 }
 
 function sep1(rule, separator) {
-  return seq(rule, repeat(seq(separator, rule)))
+  return seq(rule, repeat(seq(separator, rule)));
 }
