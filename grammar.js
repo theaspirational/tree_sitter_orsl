@@ -88,13 +88,15 @@ module.exports = grammar({
     namespace: ($) =>
       seq(
         'namespace',
-        field('name', $.identifier),
+        field('name', $.namespace_name),
         ':',
         $._newline,
         $._indent,
         field("body", $.namespace_body),
         $._dedent
       ),
+    
+    namespace_name  : $ => $.identifier,
 
     namespace_body: $ => repeat1(
       $.context),
@@ -102,7 +104,7 @@ module.exports = grammar({
     context: ($) =>
       seq(
         'context',
-        field("context_type", $.context_type),
+        field("name", $.context_name),
         ':',
         $._newline,
         $._indent,
@@ -110,7 +112,7 @@ module.exports = grammar({
         $._dedent
       ),
 
-    context_type: ($) =>
+    context_name: ($) =>
       choice(
         "global",
         "client_order",
@@ -152,11 +154,13 @@ module.exports = grammar({
     function_definition: $ => seq(
       'function',
       field('return_type', $.type),
-      field('name', $.identifier),
+      field('name', $.function_name),
       field('parameters', $.parameters),
       ':',
       field('body', $._suite)
     ),
+
+    function_name: $ => $.identifier,
 
     _suite: $ => choice(
       alias($._simple_statements, $.block),
@@ -202,7 +206,7 @@ module.exports = grammar({
 
     procedure_definition: $ => seq(
       'procedure',
-      field('name', $.identifier),
+      field('name', $.procedure_name),
       field('parameters', $.parameters),
       ':',
       $._newline,
@@ -211,6 +215,8 @@ module.exports = grammar({
       $._dedent
     ),
 
+    procedure_name: $ => $.identifier,
+
     annotated_procedure: $ => seq(
       repeat1($.annotation),
       field('procedure', $.procedure_definition)
@@ -218,8 +224,10 @@ module.exports = grammar({
 
     annotation: $ => seq(
       '@',
-      field('annotation', $.identifier),
+      field('name', $.annotation_name),
       $._newline),
+    
+    annotation_name: $ => $.identifier,
 
     procedure_body: $ => repeat1(choice(
       $.runif_block,
@@ -338,8 +346,10 @@ module.exports = grammar({
 
     typed_identifier: $ => seq(
       field('type', $.type),
-      field('name', $.identifier)
+      field('name', $.typed_identifier_name)
     ),
+
+    typed_identifier_name: $ => $.identifier,
 
     _right_hand_side: $ => choice(
       $.expression,

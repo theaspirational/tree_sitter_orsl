@@ -21,7 +21,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "namespace_name"
           }
         },
         {
@@ -50,6 +50,10 @@
         }
       ]
     },
+    "namespace_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
     "namespace_body": {
       "type": "REPEAT1",
       "content": {
@@ -66,10 +70,10 @@
         },
         {
           "type": "FIELD",
-          "name": "context_type",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "context_type"
+            "name": "context_name"
           }
         },
         {
@@ -98,7 +102,7 @@
         }
       ]
     },
-    "context_type": {
+    "context_name": {
       "type": "CHOICE",
       "members": [
         {
@@ -264,7 +268,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "function_name"
           }
         },
         {
@@ -288,6 +292,10 @@
           }
         }
       ]
+    },
+    "function_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "_suite": {
       "type": "CHOICE",
@@ -480,7 +488,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "procedure_name"
           }
         },
         {
@@ -517,6 +525,10 @@
         }
       ]
     },
+    "procedure_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
     "annotated_procedure": {
       "type": "SEQ",
       "members": [
@@ -546,10 +558,10 @@
         },
         {
           "type": "FIELD",
-          "name": "annotation",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "annotation_name"
           }
         },
         {
@@ -557,6 +569,10 @@
           "name": "_newline"
         }
       ]
+    },
+    "annotation_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "procedure_body": {
       "type": "REPEAT1",
@@ -991,10 +1007,14 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "typed_identifier_name"
           }
         }
       ]
+    },
+    "typed_identifier_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "_right_hand_side": {
       "type": "CHOICE",
