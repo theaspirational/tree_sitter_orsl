@@ -1,0 +1,94 @@
+[
+  {
+    "id": 0,
+    "edges": [
+      {
+        "sink": 1,
+        "attrs": {
+          "type": {
+            "type": "string",
+            "string": "VariableAssignment"
+          }
+        }
+      }
+    ],
+    "attrs": {
+      "name": {
+        "type": "string",
+        "string": "global"
+      },
+      "type": {
+        "type": "string",
+        "string": "Context"
+      }
+    }
+  },
+  {
+    "id": 1,
+    "edges": [],
+    "attrs": {
+      "expression": {
+        "type": "string",
+        "string": "loadMapFile(\"effectiveGroups.csv\")"
+      },
+      "type": {
+        "type": "string",
+        "string": "VariableAssignment"
+      },
+      "variable-name": {
+        "type": "string",
+        "string": "eg"
+      },
+      "variable-type": {
+        "type": "string",
+        "string": "Map"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "edges": [
+      {
+        "sink": 3,
+        "attrs": {
+          "type": {
+            "type": "string",
+            "string": "VariableAssignment"
+          }
+        }
+      }
+    ],
+    "attrs": {
+      "name": {
+        "type": "string",
+        "string": "client_order"
+      },
+      "type": {
+        "type": "string",
+        "string": "Context"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "edges": [],
+    "attrs": {
+      "type": {
+        "type": "string",
+        "string": "VariableAssignment"
+      },
+      "variable-name": {
+        "type": "string",
+        "string": "discounted"
+      },
+      "variable-type": {
+        "type": "string",
+        "string": "Bool"
+      },
+      "expression": {
+        "type": "string",
+        "string": "False"
+      }
+    }
+  }
+]

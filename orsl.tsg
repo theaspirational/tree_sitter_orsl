@@ -1,0 +1,34 @@
+;; ORSL Control Flow Graph
+;; Tree-sitter-graph DSL for .orsl files
+
+;; Capture contexts &
+;; Capture variable declarations within contexts
+(context
+    name: (_) @context-name 
+    body: (context_body
+    (user_variables
+    body:
+    (user_variables_body
+     assignment: 
+        (user_variable_assignment
+            left: (typed_identifier 
+                type: (type) @type
+                name: (typed_identifier_name) @var-name)
+            right: (expression) @expr
+        )
+    ) @var-assignment
+))) @context
+{
+
+    node @context.node
+    attr (@context.node) type = "Context"
+    attr (@context.node) name = (source-text @context-name)
+
+    node @var-assignment.node
+    attr (@var-assignment.node) type = "VariableAssignment"
+    attr (@var-assignment.node) variable-type = (source-text @type)
+    attr (@var-assignment.node) variable-name = (source-text @var-name)
+    attr (@var-assignment.node) expression = (source-text @expr)
+    edge @context.node -> @var-assignment.node
+    attr (@context.node -> @var-assignment.node) type = "VariableAssignment"
+}

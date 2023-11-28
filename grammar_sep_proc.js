@@ -127,7 +127,7 @@ module.exports = grammar({
           $.user_variables,
           $.user_marks,
           $.function_definition,
-          $.procedure_definition
+          $._procedure_definitions
         )
       ),
 
@@ -189,9 +189,11 @@ module.exports = grammar({
 
     params_maping: ($) => seq("..."),
 
+    _procedure_definitions: ($) =>
+      choice($.procedure_definition, $.annotated_procedure),
+
     procedure_definition: ($) =>
       seq(
-        repeat($.annotation),
         "procedure",
         field("name", $.procedure_name),
         field("parameters", $.parameters),
@@ -203,6 +205,9 @@ module.exports = grammar({
       ),
 
     procedure_name: ($) => $.identifier,
+
+    annotated_procedure: ($) =>
+      seq(repeat1($.annotation), field("procedure", $.procedure_definition)),
 
     annotation: ($) => seq("@", field("name", $.annotation_name), $._newline),
 

@@ -146,32 +146,6 @@
     ]
   },
   {
-    "type": "annotated_procedure",
-    "named": true,
-    "fields": {
-      "procedure": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "procedure_definition",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "annotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "annotation",
     "named": true,
     "fields": {
@@ -476,16 +450,8 @@
         "required": true,
         "types": [
           {
-            "type": "and",
-            "named": false
-          },
-          {
-            "type": "not",
-            "named": false
-          },
-          {
-            "type": "or",
-            "named": false
+            "type": "boolean_block_operator",
+            "named": true
           }
         ]
       }
@@ -505,6 +471,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "boolean_block_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "boolean_operator",
@@ -576,53 +547,13 @@
     "type": "comparison_operator",
     "named": true,
     "fields": {
-      "operators": {
+      "operator": {
         "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "!=",
-            "named": false
-          },
-          {
-            "type": "<",
-            "named": false
-          },
-          {
-            "type": "<=",
-            "named": false
-          },
-          {
-            "type": "<>",
-            "named": false
-          },
-          {
-            "type": "==",
-            "named": false
-          },
-          {
-            "type": ">",
-            "named": false
-          },
-          {
-            "type": ">=",
-            "named": false
-          },
-          {
-            "type": "in",
-            "named": false
-          },
-          {
-            "type": "is",
-            "named": false
-          },
-          {
-            "type": "is not",
-            "named": false
-          },
-          {
-            "type": "not in",
-            "named": false
+            "type": "operator",
+            "named": true
           }
         ]
       }
@@ -712,10 +643,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "annotated_procedure",
-          "named": true
-        },
         {
           "type": "function_definition",
           "named": true
@@ -1152,6 +1079,11 @@
     }
   },
   {
+    "type": "operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "orsl_document",
     "named": true,
     "fields": {
@@ -1309,6 +1241,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        }
+      ]
     }
   },
   {

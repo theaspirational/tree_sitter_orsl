@@ -1,0 +1,800 @@
+(orsl_document [0, 0] - [139, 48]
+  name: (contract_path [0, 9] - [0, 24]
+    (string [0, 9] - [0, 24]
+      (string_start [0, 9] - [0, 10])
+      (string_content [0, 10] - [0, 23])
+      (string_end [0, 23] - [0, 24])))
+  (namespace [2, 0] - [139, 48]
+    name: (namespace_name [2, 10] - [2, 17]
+      (identifier [2, 10] - [2, 17]))
+    body: (namespace_body [4, 4] - [139, 48]
+      (context [4, 4] - [12, 35]
+        name: (context_name [4, 12] - [4, 18]
+          (identifier [4, 12] - [4, 18]))
+        (context_alias [4, 19] - [4, 23]
+          (identifier [4, 22] - [4, 23]))
+        body: (context_body [6, 8] - [12, 35]
+          (user_variables [6, 8] - [12, 35]
+            body: (user_variables_body [7, 12] - [12, 35]
+              assignment: (user_variable_assignment [7, 12] - [7, 65]
+                left: (typed_identifier [7, 12] - [7, 18]
+                  type: (type [7, 12] - [7, 15])
+                  name: (typed_identifier_name [7, 16] - [7, 18]
+                    (identifier [7, 16] - [7, 18])))
+                right: (call [7, 21] - [7, 65]
+                  function: (attribute [7, 21] - [7, 34]
+                    ctx: (identifier [7, 21] - [7, 22])
+                    attribute: (identifier [7, 23] - [7, 34]))
+                  arguments: (argument_list [7, 34] - [7, 65]
+                    (string [7, 35] - [7, 56]
+                      (string_start [7, 35] - [7, 36])
+                      (string_content [7, 36] - [7, 55])
+                      (string_end [7, 55] - [7, 56]))
+                    (integer [7, 58] - [7, 59])
+                    (float [7, 61] - [7, 64]))))
+              assignment: (user_variable_assignment [8, 12] - [8, 34]
+                left: (typed_identifier [8, 12] - [8, 24]
+                  type: (type [8, 12] - [8, 18])
+                  name: (typed_identifier_name [8, 19] - [8, 24]
+                    (identifier [8, 19] - [8, 24])))
+                right: (string [8, 27] - [8, 34]
+                  (string_start [8, 27] - [8, 28])
+                  (string_content [8, 28] - [8, 33])
+                  (string_end [8, 33] - [8, 34])))
+              assignment: (user_variable_assignment [9, 12] - [9, 30]
+                left: (typed_identifier [9, 12] - [9, 22]
+                  type: (type [9, 12] - [9, 16])
+                  name: (typed_identifier_name [9, 17] - [9, 22]
+                    (identifier [9, 17] - [9, 22])))
+                right: (false [9, 25] - [9, 30]))
+              assignment: (user_variable_assignment [10, 12] - [10, 43]
+                left: (typed_identifier [10, 12] - [10, 35]
+                  type: (type [10, 12] - [10, 16])
+                  name: (typed_identifier_name [10, 17] - [10, 35]
+                    (identifier [10, 17] - [10, 35])))
+                right: (false [10, 38] - [10, 43]))
+              assignment: (user_variable_assignment [11, 12] - [11, 35]
+                left: (typed_identifier [11, 12] - [11, 27]
+                  type: (type [11, 12] - [11, 16])
+                  name: (typed_identifier_name [11, 17] - [11, 27]
+                    (identifier [11, 17] - [11, 27])))
+                right: (false [11, 30] - [11, 35]))
+              assignment: (user_variable_assignment [12, 12] - [12, 35]
+                left: (typed_identifier [12, 12] - [12, 23]
+                  type: (type [12, 12] - [12, 16])
+                  name: (typed_identifier_name [12, 17] - [12, 23]
+                    (identifier [12, 17] - [12, 23])))
+                right: (comparison_operator [12, 26] - [12, 35]
+                  (integer [12, 26] - [12, 27])
+                  operator: (operator [12, 28] - [12, 29])
+                  (integer [12, 30] - [12, 31])
+                  operator: (operator [12, 32] - [12, 33])
+                  (integer [12, 34] - [12, 35])))))))
+      (context [15, 4] - [111, 64]
+        name: (context_name [15, 12] - [15, 24]
+          (identifier [15, 12] - [15, 24]))
+        (context_alias [15, 25] - [15, 30]
+          (identifier [15, 28] - [15, 30]))
+        body: (context_body [17, 8] - [111, 64]
+          (user_variables [17, 8] - [18, 35]
+            body: (user_variables_body [18, 12] - [18, 35]
+              assignment: (user_variable_assignment [18, 12] - [18, 35]
+                left: (typed_identifier [18, 12] - [18, 27]
+                  type: (type [18, 12] - [18, 16])
+                  name: (typed_identifier_name [18, 17] - [18, 27]
+                    (identifier [18, 17] - [18, 27])))
+                right: (false [18, 30] - [18, 35]))))
+          (user_marks [19, 8] - [20, 24]
+            body: (user_marks_body [20, 12] - [20, 24]
+              mark: (typed_identifier [20, 12] - [20, 24]
+                type: (type [20, 12] - [20, 18])
+                name: (typed_identifier_name [20, 19] - [20, 24]
+                  (identifier [20, 19] - [20, 24])))))
+          (procedure_definition [22, 8] - [40, 31]
+            (annotation [22, 8] - [22, 14]
+              name: (annotation_name [22, 9] - [22, 14]
+                (identifier [22, 9] - [22, 14])))
+            name: (procedure_name [23, 18] - [23, 22]
+              (identifier [23, 18] - [23, 22]))
+            parameters: (parameters [23, 22] - [23, 45]
+              (default_parameter [23, 23] - [23, 44]
+                name: (identifier [23, 23] - [23, 29])
+                value: (string [23, 30] - [23, 44]
+                  (string_start [23, 30] - [23, 31])
+                  (string_content [23, 31] - [23, 43])
+                  (string_end [23, 43] - [23, 44]))))
+            body: (procedure_body [24, 12] - [40, 31]
+              (runif_block [24, 12] - [29, 40]
+                body: (runif_body [25, 16] - [29, 40]
+                  (comparison_operator [25, 16] - [25, 33]
+                    (attribute [25, 16] - [25, 23]
+                      ctx: (identifier [25, 16] - [25, 18])
+                      attribute: (identifier [25, 19] - [25, 23]))
+                    operator: (operator [25, 24] - [25, 26])
+                    (string [25, 27] - [25, 33]
+                      (string_start [25, 27] - [25, 28])
+                      (string_content [25, 28] - [25, 32])
+                      (string_end [25, 32] - [25, 33])))
+                  (comparison_operator [26, 16] - [26, 31]
+                    (attribute [26, 16] - [26, 22]
+                      ctx: (identifier [26, 16] - [26, 18])
+                      attribute: (identifier [26, 19] - [26, 22]))
+                    operator: (operator [26, 23] - [26, 25])
+                    (list [26, 26] - [26, 31]
+                      (integer [26, 27] - [26, 28])
+                      (integer [26, 29] - [26, 30])))
+                  (boolean_block [27, 16] - [29, 40]
+                    operator: (boolean_block_operator [27, 16] - [27, 18])
+                    body: (boolean_block_body [28, 20] - [29, 40]
+                      (comparison_operator [28, 20] - [28, 45]
+                        (attribute [28, 20] - [28, 33]
+                          ctx: (identifier [28, 20] - [28, 22])
+                          attribute: (identifier [28, 23] - [28, 33]))
+                        operator: (operator [28, 34] - [28, 36])
+                        (string [28, 37] - [28, 45]
+                          (string_start [28, 37] - [28, 38])
+                          (string_content [28, 38] - [28, 44])
+                          (string_end [28, 44] - [28, 45])))
+                      (comparison_operator [29, 20] - [29, 40]
+                        (attribute [29, 20] - [29, 30]
+                          ctx: (identifier [29, 20] - [29, 22])
+                          attribute: (identifier [29, 23] - [29, 30]))
+                        operator: (operator [29, 31] - [29, 33])
+                        (string [29, 34] - [29, 40]
+                          (string_start [29, 34] - [29, 35])
+                          (string_content [29, 35] - [29, 39])
+                          (string_end [29, 39] - [29, 40])))))))
+              (init_block [30, 12] - [33, 43]
+                body: (init_body [31, 16] - [33, 43]
+                  (expression_statement [31, 16] - [31, 29]
+                    (call [31, 16] - [31, 29]
+                      function: (identifier [31, 16] - [31, 27])
+                      arguments: (argument_list [31, 27] - [31, 29])))
+                  (expression_statement [32, 16] - [32, 51]
+                    (assignment [32, 16] - [32, 51]
+                      left: (attribute [32, 16] - [32, 24]
+                        ctx: (identifier [32, 16] - [32, 18])
+                        attribute: (identifier [32, 19] - [32, 24]))
+                      right: (call [32, 27] - [32, 51]
+                        function: (identifier [32, 27] - [32, 35])
+                        arguments: (argument_list [32, 35] - [32, 51]
+                          (identifier [32, 36] - [32, 50])))))
+                  (expression_statement [33, 16] - [33, 43]
+                    (assignment [33, 16] - [33, 43]
+                      left: (attribute [33, 16] - [33, 37]
+                        ctx: (identifier [33, 16] - [33, 18])
+                        attribute: (identifier [33, 19] - [33, 37]))
+                      right: (string [33, 40] - [33, 43]
+                        (string_start [33, 40] - [33, 41])
+                        (string_content [33, 41] - [33, 42])
+                        (string_end [33, 42] - [33, 43]))))))
+              (sequence_block [34, 12] - [40, 31]
+                body: (sequence_body [35, 16] - [40, 31]
+                  (expression_statement [35, 16] - [35, 33]
+                    (call [35, 16] - [35, 33]
+                      function: (identifier [35, 16] - [35, 20])
+                      arguments: (argument_list [35, 20] - [35, 33]
+                        (string [35, 21] - [35, 32]
+                          (string_start [35, 21] - [35, 22])
+                          (string_content [35, 22] - [35, 31])
+                          (string_end [35, 31] - [35, 32])))))
+                  (expression_statement [36, 16] - [36, 28]
+                    (call [36, 16] - [36, 28]
+                      function: (identifier [36, 16] - [36, 26])
+                      arguments: (argument_list [36, 26] - [36, 28])))
+                  (expression_statement [37, 16] - [37, 33]
+                    (call [37, 16] - [37, 33]
+                      function: (identifier [37, 16] - [37, 20])
+                      arguments: (argument_list [37, 20] - [37, 33]
+                        (string [37, 21] - [37, 32]
+                          (string_start [37, 21] - [37, 22])
+                          (string_content [37, 22] - [37, 31])
+                          (string_end [37, 31] - [37, 32])))))
+                  (if_statement [38, 16] - [39, 34]
+                    condition: (parenthesized_expression [38, 19] - [38, 35]
+                      (comparison_operator [38, 20] - [38, 34]
+                        (identifier [38, 20] - [38, 26])
+                        operator: (operator [38, 26] - [38, 28])
+                        (string [38, 28] - [38, 34]
+                          (string_start [38, 28] - [38, 29])
+                          (string_content [38, 29] - [38, 33])
+                          (string_end [38, 33] - [38, 34]))))
+                    consequence: (block [39, 20] - [39, 34]
+                      (expression_statement [39, 20] - [39, 34]
+                        (call [39, 20] - [39, 34]
+                          function: (identifier [39, 20] - [39, 24])
+                          arguments: (argument_list [39, 24] - [39, 34]
+                            (string [39, 25] - [39, 33]
+                              (string_start [39, 25] - [39, 26])
+                              (string_content [39, 26] - [39, 32])
+                              (string_end [39, 32] - [39, 33])))))))
+                  (expression_statement [40, 16] - [40, 31]
+                    (call [40, 16] - [40, 31]
+                      function: (identifier [40, 16] - [40, 20])
+                      arguments: (argument_list [40, 20] - [40, 31]
+                        (string [40, 21] - [40, 30]
+                          (string_start [40, 21] - [40, 22])
+                          (string_content [40, 22] - [40, 29])
+                          (string_end [40, 29] - [40, 30])))))))))
+          (procedure_definition [42, 8] - [46, 30]
+            name: (procedure_name [42, 18] - [42, 28]
+              (identifier [42, 18] - [42, 28]))
+            parameters: (parameters [42, 28] - [42, 30])
+            body: (procedure_body [43, 12] - [46, 30]
+              (runif_block [43, 12] - [44, 40]
+                body: (runif_body [44, 16] - [44, 40]
+                  (comparison_operator [44, 16] - [44, 40]
+                    (attribute [44, 16] - [44, 30]
+                      ctx: (attribute [44, 16] - [44, 22]
+                        ctx: (identifier [44, 16] - [44, 18])
+                        attribute: (identifier [44, 19] - [44, 22]))
+                      attribute: (identifier [44, 23] - [44, 30]))
+                    operator: (operator [44, 31] - [44, 33])
+                    (string [44, 34] - [44, 40]
+                      (string_start [44, 34] - [44, 35])
+                      (string_content [44, 35] - [44, 39])
+                      (string_end [44, 39] - [44, 40])))))
+              (sequence_block [45, 12] - [46, 30]
+                body: (sequence_body [46, 16] - [46, 30]
+                  (expression_statement [46, 16] - [46, 30]
+                    (call [46, 16] - [46, 30]
+                      function: (identifier [46, 16] - [46, 20])
+                      arguments: (argument_list [46, 20] - [46, 30]
+                        (string [46, 21] - [46, 29]
+                          (string_start [46, 21] - [46, 22])
+                          (string_content [46, 22] - [46, 28])
+                          (string_end [46, 28] - [46, 29])))))))))
+          (procedure_definition [48, 8] - [57, 38]
+            (annotation [48, 8] - [48, 14]
+              name: (annotation_name [48, 9] - [48, 14]
+                (identifier [48, 9] - [48, 14])))
+            name: (procedure_name [49, 18] - [49, 23]
+              (identifier [49, 18] - [49, 23]))
+            parameters: (parameters [49, 23] - [49, 31]
+              (identifier [49, 24] - [49, 30]))
+            body: (procedure_body [50, 12] - [57, 38]
+              (runif_block [50, 12] - [51, 34]
+                body: (runif_body [51, 16] - [51, 34]
+                  (comparison_operator [51, 16] - [51, 34]
+                    (attribute [51, 16] - [51, 23]
+                      ctx: (identifier [51, 16] - [51, 18])
+                      attribute: (identifier [51, 19] - [51, 23]))
+                    operator: (operator [51, 24] - [51, 26])
+                    (string [51, 27] - [51, 34]
+                      (string_start [51, 27] - [51, 28])
+                      (string_content [51, 28] - [51, 33])
+                      (string_end [51, 33] - [51, 34])))))
+              (sequence_block [52, 12] - [57, 38]
+                body: (sequence_body [53, 16] - [57, 38]
+                  (expression_statement [53, 16] - [57, 38]
+                    (overridable_call [53, 16] - [57, 38]
+                      override: (identifier [53, 16] - [53, 20])
+                      arguments: (argument_list [53, 20] - [53, 28]
+                        (identifier [53, 21] - [53, 27]))
+                      body: (block [54, 20] - [57, 38]
+                        (expression_statement [54, 20] - [54, 49]
+                          (assignment [54, 20] - [54, 49]
+                            left: (identifier [54, 20] - [54, 23])
+                            right: (call [54, 26] - [54, 49]
+                              function: (identifier [54, 26] - [54, 36])
+                              arguments: (argument_list [54, 36] - [54, 49]
+                                (string [54, 37] - [54, 48]
+                                  (string_start [54, 37] - [54, 38])
+                                  (string_content [54, 38] - [54, 47])
+                                  (string_end [54, 47] - [54, 48]))))))
+                        (expression_statement [55, 20] - [57, 38]
+                          (overridable_call [55, 20] - [57, 38]
+                            override: (identifier [55, 20] - [55, 28])
+                            arguments: (argument_list [55, 28] - [55, 33]
+                              (identifier [55, 29] - [55, 32]))
+                            body: (block [56, 24] - [57, 38]
+                              (expression_statement [56, 24] - [56, 38]
+                                (call [56, 24] - [56, 38]
+                                  function: (identifier [56, 24] - [56, 28])
+                                  arguments: (argument_list [56, 28] - [56, 38]
+                                    (string [56, 29] - [56, 37]
+                                      (string_start [56, 29] - [56, 30])
+                                      (string_content [56, 30] - [56, 36])
+                                      (string_end [56, 36] - [56, 37])))))
+                              (expression_statement [57, 24] - [57, 38]
+                                (call [57, 24] - [57, 38]
+                                  function: (identifier [57, 24] - [57, 28])
+                                  arguments: (argument_list [57, 28] - [57, 38]
+                                    (string [57, 29] - [57, 37]
+                                      (string_start [57, 29] - [57, 30])
+                                      (string_content [57, 30] - [57, 36])
+                                      (string_end [57, 36] - [57, 37])))))))))))))))
+          (procedure_definition [59, 8] - [65, 39]
+            (annotation [59, 8] - [59, 14]
+              name: (annotation_name [59, 9] - [59, 14]
+                (identifier [59, 9] - [59, 14])))
+            name: (procedure_name [60, 18] - [60, 23]
+              (identifier [60, 18] - [60, 23]))
+            parameters: (parameters [60, 23] - [60, 25])
+            body: (procedure_body [61, 12] - [65, 39]
+              (runif_block [61, 12] - [62, 57]
+                body: (runif_body [62, 16] - [62, 57]
+                  (comparison_operator [62, 16] - [62, 57]
+                    (subscript [62, 16] - [62, 34]
+                      value: (identifier [62, 16] - [62, 18])
+                      subscript: (attribute [62, 19] - [62, 33]
+                        ctx: (identifier [62, 19] - [62, 21])
+                        attribute: (identifier [62, 22] - [62, 33])))
+                    operator: (operator [62, 35] - [62, 37])
+                    (string [62, 38] - [62, 57]
+                      (string_start [62, 38] - [62, 39])
+                      (string_content [62, 39] - [62, 56])
+                      (string_end [62, 56] - [62, 57])))))
+              (sequence_block [63, 12] - [65, 39]
+                body: (sequence_body [64, 16] - [65, 39]
+                  (expression_statement [64, 16] - [64, 36]
+                    (assignment [64, 16] - [64, 36]
+                      left: (attribute [64, 16] - [64, 29]
+                        ctx: (identifier [64, 16] - [64, 18])
+                        attribute: (identifier [64, 19] - [64, 29]))
+                      right: (true [64, 32] - [64, 36])))
+                  (expression_statement [65, 16] - [65, 39]
+                    (call [65, 16] - [65, 39]
+                      function: (identifier [65, 16] - [65, 21])
+                      arguments: (argument_list [65, 21] - [65, 39]
+                        (string [65, 22] - [65, 38]
+                          (string_start [65, 22] - [65, 23])
+                          (string_content [65, 23] - [65, 37])
+                          (string_end [65, 37] - [65, 38])))))))))
+          (procedure_definition [67, 8] - [74, 23]
+            (annotation [67, 8] - [67, 14]
+              name: (annotation_name [67, 9] - [67, 14]
+                (identifier [67, 9] - [67, 14])))
+            name: (procedure_name [68, 18] - [68, 23]
+              (identifier [68, 18] - [68, 23]))
+            parameters: (parameters [68, 23] - [68, 25])
+            body: (procedure_body [69, 12] - [74, 23]
+              (runif_block [69, 12] - [70, 34]
+                body: (runif_body [70, 16] - [70, 34]
+                  (comparison_operator [70, 16] - [70, 34]
+                    (attribute [70, 16] - [70, 23]
+                      ctx: (identifier [70, 16] - [70, 18])
+                      attribute: (identifier [70, 19] - [70, 23]))
+                    operator: (operator [70, 24] - [70, 26])
+                    (string [70, 27] - [70, 34]
+                      (string_start [70, 27] - [70, 28])
+                      (string_content [70, 28] - [70, 33])
+                      (string_end [70, 33] - [70, 34])))))
+              (sequence_block [71, 12] - [74, 23]
+                body: (sequence_body [72, 16] - [74, 23]
+                  (expression_statement [72, 16] - [72, 23]
+                    (call [72, 16] - [72, 23]
+                      function: (identifier [72, 16] - [72, 21])
+                      arguments: (argument_list [72, 21] - [72, 23])))
+                  (expression_statement [73, 16] - [73, 54]
+                    (call [73, 16] - [73, 54]
+                      function: (identifier [73, 16] - [73, 21])
+                      arguments: (argument_list [73, 21] - [73, 54]
+                        (comparison_operator [73, 22] - [73, 48]
+                          (attribute [73, 22] - [73, 34]
+                            ctx: (identifier [73, 22] - [73, 24])
+                            attribute: (identifier [73, 25] - [73, 34]))
+                          operator: (operator [73, 35] - [73, 36])
+                          (binary_operator [73, 37] - [73, 48]
+                            left: (attribute [73, 37] - [73, 44]
+                              ctx: (identifier [73, 37] - [73, 39])
+                              attribute: (identifier [73, 40] - [73, 44]))
+                            right: (integer [73, 47] - [73, 48])))
+                        (float [73, 50] - [73, 53]))))
+                  (expression_statement [74, 16] - [74, 23]
+                    (call [74, 16] - [74, 23]
+                      function: (identifier [74, 16] - [74, 21])
+                      arguments: (argument_list [74, 21] - [74, 23])))))))
+          (procedure_definition [76, 8] - [85, 23]
+            (annotation [76, 8] - [76, 14]
+              name: (annotation_name [76, 9] - [76, 14]
+                (identifier [76, 9] - [76, 14])))
+            name: (procedure_name [77, 18] - [77, 25]
+              (identifier [77, 18] - [77, 25]))
+            parameters: (parameters [77, 25] - [77, 27])
+            body: (procedure_body [78, 12] - [85, 23]
+              (runif_block [78, 12] - [79, 32]
+                body: (runif_body [79, 16] - [79, 32]
+                  (comparison_operator [79, 16] - [79, 32]
+                    (attribute [79, 16] - [79, 23]
+                      ctx: (identifier [79, 16] - [79, 18])
+                      attribute: (identifier [79, 19] - [79, 23]))
+                    operator: (operator [79, 24] - [79, 26])
+                    (string [79, 27] - [79, 32]
+                      (string_start [79, 27] - [79, 28])
+                      (string_content [79, 28] - [79, 31])
+                      (string_end [79, 31] - [79, 32])))))
+              (sequence_block [80, 12] - [85, 23]
+                body: (sequence_body [81, 16] - [85, 23]
+                  (expression_statement [81, 16] - [81, 23]
+                    (call [81, 16] - [81, 23]
+                      function: (identifier [81, 16] - [81, 21])
+                      arguments: (argument_list [81, 21] - [81, 23])))
+                  (any_call [82, 16] - [84, 27]
+                    parameters: (parameters [82, 19] - [82, 37]
+                      (default_parameter [82, 20] - [82, 36]
+                        name: (identifier [82, 20] - [82, 31])
+                        value: (true [82, 32] - [82, 36])))
+                    body: (any_body [83, 20] - [84, 27]
+                      (expression_statement [83, 20] - [83, 27]
+                        (call [83, 20] - [83, 27]
+                          function: (identifier [83, 20] - [83, 25])
+                          arguments: (argument_list [83, 25] - [83, 27])))
+                      (expression_statement [84, 20] - [84, 27]
+                        (call [84, 20] - [84, 27]
+                          function: (identifier [84, 20] - [84, 25])
+                          arguments: (argument_list [84, 25] - [84, 27])))))
+                  (expression_statement [85, 16] - [85, 23]
+                    (call [85, 16] - [85, 23]
+                      function: (identifier [85, 16] - [85, 21])
+                      arguments: (argument_list [85, 21] - [85, 23])))))))
+          (procedure_definition [87, 8] - [99, 27]
+            (annotation [87, 8] - [87, 14]
+              name: (annotation_name [87, 9] - [87, 14]
+                (identifier [87, 9] - [87, 14])))
+            name: (procedure_name [88, 18] - [88, 26]
+              (identifier [88, 18] - [88, 26]))
+            parameters: (parameters [88, 26] - [88, 28])
+            body: (procedure_body [89, 12] - [99, 27]
+              (init_block [89, 12] - [93, 41]
+                body: (init_body [90, 16] - [93, 41]
+                  (expression_statement [90, 16] - [90, 43]
+                    (assignment [90, 16] - [90, 43]
+                      left: (attribute [90, 16] - [90, 37]
+                        ctx: (identifier [90, 16] - [90, 18])
+                        attribute: (identifier [90, 19] - [90, 37]))
+                      right: (string [90, 40] - [90, 43]
+                        (string_start [90, 40] - [90, 41])
+                        (string_content [90, 41] - [90, 42])
+                        (string_end [90, 42] - [90, 43]))))
+                  (boolean_block [91, 16] - [93, 41]
+                    operator: (boolean_block_operator [91, 16] - [91, 18])
+                    body: (boolean_block_body [92, 20] - [93, 41]
+                      (comparison_operator [92, 20] - [92, 41]
+                        (attribute [92, 20] - [92, 31]
+                          ctx: (identifier [92, 20] - [92, 23])
+                          attribute: (identifier [92, 24] - [92, 31]))
+                        operator: (operator [92, 32] - [92, 34])
+                        (string [92, 35] - [92, 41]
+                          (string_start [92, 35] - [92, 36])
+                          (string_content [92, 36] - [92, 40])
+                          (string_end [92, 40] - [92, 41])))
+                      (comparison_operator [93, 20] - [93, 41]
+                        (attribute [93, 20] - [93, 27]
+                          ctx: (identifier [93, 20] - [93, 22])
+                          attribute: (identifier [93, 23] - [93, 27]))
+                        operator: (operator [93, 28] - [93, 30])
+                        (attribute [93, 31] - [93, 41]
+                          ctx: (identifier [93, 31] - [93, 34])
+                          attribute: (identifier [93, 35] - [93, 41])))))))
+              (sequence_block [94, 12] - [99, 27]
+                body: (sequence_body [95, 16] - [99, 27]
+                  (expression_statement [95, 16] - [95, 22]
+                    (call [95, 16] - [95, 22]
+                      function: (identifier [95, 16] - [95, 20])
+                      arguments: (argument_list [95, 20] - [95, 22])))
+                  (expression_statement [96, 16] - [96, 29]
+                    (call [96, 16] - [96, 29]
+                      function: (identifier [96, 16] - [96, 27])
+                      arguments: (argument_list [96, 27] - [96, 29])))
+                  (expression_statement [97, 16] - [97, 31]
+                    (call [97, 16] - [97, 31]
+                      function: (identifier [97, 16] - [97, 23])
+                      arguments: (argument_list [97, 23] - [97, 31]
+                        (identifier [97, 24] - [97, 30]))))
+                  (expression_statement [98, 16] - [98, 31]
+                    (call [98, 16] - [98, 31]
+                      function: (identifier [98, 16] - [98, 23])
+                      arguments: (argument_list [98, 23] - [98, 31]
+                        (identifier [98, 24] - [98, 30]))))
+                  (expression_statement [99, 16] - [99, 27]
+                    (call [99, 16] - [99, 27]
+                      function: (identifier [99, 16] - [99, 25])
+                      arguments: (argument_list [99, 25] - [99, 27])))))))
+          (procedure_definition [101, 8] - [111, 64]
+            name: (procedure_name [101, 18] - [101, 27]
+              (identifier [101, 18] - [101, 27]))
+            parameters: (parameters [101, 27] - [101, 29])
+            body: (procedure_body [102, 12] - [111, 64]
+              (sequence_block [102, 12] - [111, 64]
+                body: (sequence_body [103, 16] - [111, 64]
+                  (any_block [103, 16] - [111, 64]
+                    body: (any_body [104, 20] - [111, 64]
+                      (expression_statement [104, 20] - [104, 64]
+                        (call [104, 20] - [104, 64]
+                          function: (identifier [104, 20] - [104, 24])
+                          arguments: (argument_list [104, 24] - [104, 64]
+                            (identifier [104, 25] - [104, 31])
+                            (keyword_argument [104, 33] - [104, 45]
+                              name: (identifier [104, 33] - [104, 37])
+                              value: (attribute [104, 38] - [104, 45]
+                                ctx: (identifier [104, 38] - [104, 40])
+                                attribute: (identifier [104, 41] - [104, 45])))
+                            (keyword_argument [104, 47] - [104, 63]
+                              name: (identifier [104, 47] - [104, 53])
+                              value: (attribute [104, 54] - [104, 63]
+                                ctx: (identifier [104, 54] - [104, 56])
+                                attribute: (identifier [104, 57] - [104, 63]))))))
+                      (expression_statement [105, 20] - [105, 64]
+                        (call [105, 20] - [105, 64]
+                          function: (identifier [105, 20] - [105, 24])
+                          arguments: (argument_list [105, 24] - [105, 64]
+                            (identifier [105, 25] - [105, 31])
+                            (keyword_argument [105, 33] - [105, 45]
+                              name: (identifier [105, 33] - [105, 37])
+                              value: (attribute [105, 38] - [105, 45]
+                                ctx: (identifier [105, 38] - [105, 40])
+                                attribute: (identifier [105, 41] - [105, 45])))
+                            (keyword_argument [105, 47] - [105, 63]
+                              name: (identifier [105, 47] - [105, 53])
+                              value: (attribute [105, 54] - [105, 63]
+                                ctx: (identifier [105, 54] - [105, 56])
+                                attribute: (identifier [105, 57] - [105, 63]))))))
+                      (expression_statement [106, 20] - [106, 65]
+                        (call [106, 20] - [106, 65]
+                          function: (identifier [106, 20] - [106, 24])
+                          arguments: (argument_list [106, 24] - [106, 65]
+                            (identifier [106, 25] - [106, 32])
+                            (keyword_argument [106, 34] - [106, 46]
+                              name: (identifier [106, 34] - [106, 38])
+                              value: (attribute [106, 39] - [106, 46]
+                                ctx: (identifier [106, 39] - [106, 41])
+                                attribute: (identifier [106, 42] - [106, 46])))
+                            (keyword_argument [106, 48] - [106, 64]
+                              name: (identifier [106, 48] - [106, 54])
+                              value: (attribute [106, 55] - [106, 64]
+                                ctx: (identifier [106, 55] - [106, 57])
+                                attribute: (identifier [106, 58] - [106, 64]))))))
+                      (expression_statement [107, 20] - [107, 64]
+                        (call [107, 20] - [107, 64]
+                          function: (identifier [107, 20] - [107, 24])
+                          arguments: (argument_list [107, 24] - [107, 64]
+                            (identifier [107, 25] - [107, 31])
+                            (keyword_argument [107, 33] - [107, 45]
+                              name: (identifier [107, 33] - [107, 37])
+                              value: (attribute [107, 38] - [107, 45]
+                                ctx: (identifier [107, 38] - [107, 40])
+                                attribute: (identifier [107, 41] - [107, 45])))
+                            (keyword_argument [107, 47] - [107, 63]
+                              name: (identifier [107, 47] - [107, 53])
+                              value: (attribute [107, 54] - [107, 63]
+                                ctx: (identifier [107, 54] - [107, 56])
+                                attribute: (identifier [107, 57] - [107, 63]))))))
+                      (expression_statement [108, 20] - [108, 64]
+                        (call [108, 20] - [108, 64]
+                          function: (identifier [108, 20] - [108, 24])
+                          arguments: (argument_list [108, 24] - [108, 64]
+                            (identifier [108, 25] - [108, 31])
+                            (keyword_argument [108, 33] - [108, 45]
+                              name: (identifier [108, 33] - [108, 37])
+                              value: (attribute [108, 38] - [108, 45]
+                                ctx: (identifier [108, 38] - [108, 40])
+                                attribute: (identifier [108, 41] - [108, 45])))
+                            (keyword_argument [108, 47] - [108, 63]
+                              name: (identifier [108, 47] - [108, 53])
+                              value: (attribute [108, 54] - [108, 63]
+                                ctx: (identifier [108, 54] - [108, 56])
+                                attribute: (identifier [108, 57] - [108, 63]))))))
+                      (expression_statement [109, 20] - [109, 64]
+                        (call [109, 20] - [109, 64]
+                          function: (identifier [109, 20] - [109, 24])
+                          arguments: (argument_list [109, 24] - [109, 64]
+                            (identifier [109, 25] - [109, 31])
+                            (keyword_argument [109, 33] - [109, 45]
+                              name: (identifier [109, 33] - [109, 37])
+                              value: (attribute [109, 38] - [109, 45]
+                                ctx: (identifier [109, 38] - [109, 40])
+                                attribute: (identifier [109, 41] - [109, 45])))
+                            (keyword_argument [109, 47] - [109, 63]
+                              name: (identifier [109, 47] - [109, 53])
+                              value: (attribute [109, 54] - [109, 63]
+                                ctx: (identifier [109, 54] - [109, 56])
+                                attribute: (identifier [109, 57] - [109, 63]))))))
+                      (expression_statement [110, 20] - [110, 66]
+                        (call [110, 20] - [110, 66]
+                          function: (identifier [110, 20] - [110, 24])
+                          arguments: (argument_list [110, 24] - [110, 66]
+                            (identifier [110, 25] - [110, 33])
+                            (keyword_argument [110, 35] - [110, 47]
+                              name: (identifier [110, 35] - [110, 39])
+                              value: (attribute [110, 40] - [110, 47]
+                                ctx: (identifier [110, 40] - [110, 42])
+                                attribute: (identifier [110, 43] - [110, 47])))
+                            (keyword_argument [110, 49] - [110, 65]
+                              name: (identifier [110, 49] - [110, 55])
+                              value: (attribute [110, 56] - [110, 65]
+                                ctx: (identifier [110, 56] - [110, 58])
+                                attribute: (identifier [110, 59] - [110, 65]))))))
+                      (expression_statement [111, 20] - [111, 64]
+                        (call [111, 20] - [111, 64]
+                          function: (identifier [111, 20] - [111, 24])
+                          arguments: (argument_list [111, 24] - [111, 64]
+                            (identifier [111, 25] - [111, 31])
+                            (keyword_argument [111, 33] - [111, 45]
+                              name: (identifier [111, 33] - [111, 37])
+                              value: (attribute [111, 38] - [111, 45]
+                                ctx: (identifier [111, 38] - [111, 40])
+                                attribute: (identifier [111, 41] - [111, 45])))
+                            (keyword_argument [111, 47] - [111, 63]
+                              name: (identifier [111, 47] - [111, 53])
+                              value: (attribute [111, 54] - [111, 63]
+                                ctx: (identifier [111, 54] - [111, 56])
+                                attribute: (identifier [111, 57] - [111, 63]))))))))))))))
+      (context [113, 4] - [139, 48]
+        name: (context_name [113, 12] - [113, 23]
+          (identifier [113, 12] - [113, 23]))
+        (context_alias [113, 24] - [113, 29]
+          (identifier [113, 27] - [113, 29]))
+        body: (context_body [115, 8] - [139, 48]
+          (procedure_definition [115, 8] - [119, 33]
+            name: (procedure_name [115, 18] - [115, 36]
+              (identifier [115, 18] - [115, 36]))
+            parameters: (parameters [115, 36] - [115, 38])
+            body: (procedure_body [116, 12] - [119, 33]
+              (map_block [116, 12] - [119, 33]
+                body: (map_body [117, 16] - [119, 33]
+                  (expression_statement [117, 16] - [117, 43]
+                    (assignment [117, 16] - [117, 43]
+                      left: (attribute [117, 16] - [117, 24]
+                        ctx: (identifier [117, 16] - [117, 18])
+                        attribute: (identifier [117, 19] - [117, 24]))
+                      right: (string [117, 26] - [117, 43]
+                        (string_start [117, 26] - [117, 27])
+                        (string_content [117, 27] - [117, 42])
+                        (string_end [117, 42] - [117, 43]))))
+                  (expression_statement [118, 16] - [118, 32]
+                    (assignment [118, 16] - [118, 32]
+                      left: (attribute [118, 16] - [118, 23]
+                        ctx: (identifier [118, 16] - [118, 18])
+                        attribute: (identifier [118, 19] - [118, 23]))
+                      right: (string [118, 25] - [118, 32]
+                        (string_start [118, 25] - [118, 26])
+                        (string_content [118, 26] - [118, 31])
+                        (string_end [118, 31] - [118, 32]))))
+                  (expression_statement [119, 16] - [119, 33]
+                    (assignment [119, 16] - [119, 33]
+                      left: (attribute [119, 16] - [119, 22]
+                        ctx: (identifier [119, 16] - [119, 18])
+                        attribute: (identifier [119, 19] - [119, 22]))
+                      right: (string [119, 24] - [119, 33]
+                        (string_start [119, 24] - [119, 25])
+                        (string_content [119, 25] - [119, 32])
+                        (string_end [119, 32] - [119, 33]))))))))
+          (procedure_definition [121, 8] - [139, 48]
+            (annotation [121, 8] - [121, 14]
+              name: (annotation_name [121, 9] - [121, 14]
+                (identifier [121, 9] - [121, 14])))
+            name: (procedure_name [122, 18] - [122, 24]
+              (identifier [122, 18] - [122, 24]))
+            parameters: (parameters [122, 24] - [122, 65]
+              (default_parameter [122, 25] - [122, 37]
+                name: (identifier [122, 25] - [122, 31])
+                value: (false [122, 32] - [122, 37]))
+              (default_parameter [122, 39] - [122, 48]
+                name: (identifier [122, 39] - [122, 42])
+                value: (false [122, 43] - [122, 48]))
+              (default_parameter [122, 50] - [122, 64]
+                name: (identifier [122, 50] - [122, 54])
+                value: (attribute [122, 55] - [122, 64]
+                  ctx: (identifier [122, 55] - [122, 58])
+                  attribute: (identifier [122, 59] - [122, 64]))))
+            body: (procedure_body [123, 12] - [139, 48]
+              (init_block [123, 12] - [125, 27]
+                body: (init_body [124, 16] - [125, 27]
+                  (if_statement [124, 16] - [125, 27]
+                    condition: (comparison_operator [124, 19] - [124, 39]
+                      (attribute [124, 19] - [124, 32]
+                        ctx: (attribute [124, 19] - [124, 25]
+                          ctx: (identifier [124, 19] - [124, 21])
+                          attribute: (identifier [124, 22] - [124, 25]))
+                        attribute: (identifier [124, 26] - [124, 32]))
+                      operator: (operator [124, 33] - [124, 35])
+                      (string [124, 36] - [124, 39]
+                        (string_start [124, 36] - [124, 37])
+                        (string_content [124, 37] - [124, 38])
+                        (string_end [124, 38] - [124, 39])))
+                    consequence: (block [125, 20] - [125, 27]
+                      (expression_statement [125, 20] - [125, 27]
+                        (call [125, 20] - [125, 27]
+                          function: (identifier [125, 20] - [125, 25])
+                          arguments: (argument_list [125, 25] - [125, 27])))))))
+              (map_block [126, 12] - [139, 48]
+                body: (map_body [127, 16] - [139, 48]
+                  (expression_statement [127, 16] - [127, 36]
+                    (call [127, 16] - [127, 36]
+                      function: (identifier [127, 16] - [127, 34])
+                      arguments: (argument_list [127, 34] - [127, 36])))
+                  (expression_statement [128, 16] - [128, 35]
+                    (assignment [128, 16] - [128, 35]
+                      left: (attribute [128, 16] - [128, 27]
+                        ctx: (identifier [128, 16] - [128, 18])
+                        attribute: (identifier [128, 19] - [128, 27]))
+                      right: (string [128, 29] - [128, 35]
+                        (string_start [128, 29] - [128, 30])
+                        (string_content [128, 30] - [128, 34])
+                        (string_end [128, 34] - [128, 35]))))
+                  (expression_statement [129, 16] - [129, 30]
+                    (assignment [129, 16] - [129, 30]
+                      left: (identifier [129, 16] - [129, 25])
+                      right: (string [129, 27] - [129, 30]
+                        (string_start [129, 27] - [129, 28])
+                        (string_content [129, 28] - [129, 29])
+                        (string_end [129, 29] - [129, 30]))))
+                  (expression_statement [130, 16] - [130, 29]
+                    (assignment [130, 16] - [130, 29]
+                      left: (attribute [130, 16] - [130, 23]
+                        ctx: (identifier [130, 16] - [130, 18])
+                        attribute: (identifier [130, 19] - [130, 23]))
+                      right: (identifier [130, 25] - [130, 29])))
+                  (if_statement [132, 16] - [138, 32]
+                    condition: (comparison_operator [132, 19] - [132, 34]
+                      (identifier [132, 19] - [132, 25])
+                      operator: (operator [132, 26] - [132, 28])
+                      (false [132, 29] - [132, 34]))
+                    consequence: (block [133, 20] - [134, 36]
+                      (expression_statement [133, 20] - [133, 45]
+                        (assignment [133, 20] - [133, 45]
+                          left: (attribute [133, 20] - [133, 37]
+                            ctx: (identifier [133, 20] - [133, 22])
+                            attribute: (identifier [133, 23] - [133, 37]))
+                          right: (string [133, 39] - [133, 45]
+                            (string_start [133, 39] - [133, 40])
+                            (string_content [133, 40] - [133, 44])
+                            (string_end [133, 44] - [133, 45]))))
+                      (expression_statement [134, 20] - [134, 36]
+                        (assignment [134, 20] - [134, 36]
+                          left: (attribute [134, 20] - [134, 31]
+                            ctx: (identifier [134, 20] - [134, 22])
+                            attribute: (identifier [134, 23] - [134, 31]))
+                          right: (string [134, 33] - [134, 36]
+                            (string_start [134, 33] - [134, 34])
+                            (string_content [134, 34] - [134, 35])
+                            (string_end [134, 35] - [134, 36])))))
+                    alternative: (elif_clause [135, 16] - [138, 32]
+                      condition: (comparison_operator [135, 21] - [135, 35]
+                        (identifier [135, 21] - [135, 27])
+                        operator: (operator [135, 28] - [135, 30])
+                        (true [135, 31] - [135, 35]))
+                      consequence: (block [136, 20] - [138, 32]
+                        (expression_statement [136, 20] - [136, 45]
+                          (assignment [136, 20] - [136, 45]
+                            left: (attribute [136, 20] - [136, 37]
+                              ctx: (identifier [136, 20] - [136, 22])
+                              attribute: (identifier [136, 23] - [136, 37]))
+                            right: (string [136, 39] - [136, 45]
+                              (string_start [136, 39] - [136, 40])
+                              (string_content [136, 40] - [136, 44])
+                              (string_end [136, 44] - [136, 45]))))
+                        (expression_statement [137, 20] - [137, 36]
+                          (assignment [137, 20] - [137, 36]
+                            left: (attribute [137, 20] - [137, 31]
+                              ctx: (identifier [137, 20] - [137, 22])
+                              attribute: (identifier [137, 23] - [137, 31]))
+                            right: (string [137, 33] - [137, 36]
+                              (string_start [137, 33] - [137, 34])
+                              (string_content [137, 34] - [137, 35])
+                              (string_end [137, 35] - [137, 36]))))
+                        (expression_statement [138, 20] - [138, 32]
+                          (assignment [138, 20] - [138, 32]
+                            left: (attribute [138, 20] - [138, 27]
+                              ctx: (identifier [138, 20] - [138, 22])
+                              attribute: (identifier [138, 23] - [138, 27]))
+                            right: (string [138, 29] - [138, 32]
+                              (string_start [138, 29] - [138, 30])
+                              (string_content [138, 30] - [138, 31])
+                              (string_end [138, 31] - [138, 32])))))))
+                  (expression_statement [139, 16] - [139, 48]
+                    (assignment [139, 16] - [139, 48]
+                      left: (attribute [139, 16] - [139, 22]
+                        ctx: (identifier [139, 16] - [139, 18])
+                        attribute: (identifier [139, 19] - [139, 22]))
+                      right: (ternary_expression [139, 25] - [139, 48]
+                        condition: (identifier [139, 25] - [139, 28])
+                        consequence: (string [139, 29] - [139, 38]
+                          (string_start [139, 29] - [139, 30])
+                          (string_content [139, 30] - [139, 37])
+                          (string_end [139, 37] - [139, 38]))
+                        alternative: (string [139, 39] - [139, 48]
+                          (string_start [139, 39] - [139, 40])
+                          (string_content [139, 40] - [139, 47])
+                          (string_end [139, 47] - [139, 48]))))))))))))))
